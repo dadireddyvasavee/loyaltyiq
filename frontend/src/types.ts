@@ -1,0 +1,12 @@
+export type Account = { balance: number; lifetime_points: number; tier: string };
+export type Customer = { id: number; first_name: string; last_name: string; email: string; phone: string | null; preferred_categories: string[]; joined_at: string; account: Account | null; segment: string | null };
+export type Reward = { id: number; name: string; description: string; category: string; points_cost: number; stock: number; min_tier: string; active: boolean; valid_until: string | null };
+export type Org = { id: number; name: string; is_synthetic: boolean; points_per_currency: number; min_purchase_for_points: number; points_expiry_days: number; tier_silver_points: number; tier_gold_points: number; welcome_bonus: number };
+export type RewardRec = { reward_id: number; name: string; category: string; points_cost: number; affordable: boolean; score: number; reasons: string[] };
+export type Campaign = { id: number; name: string; objective: string; segment: string; message_template: string; ideas: string[]; reward_id: number | null; bonus_points: number; status: string; generated_by: string; created_by: number; approved_by: number | null; activated_at: string | null; created_at: string };
+export type CampaignMetrics = { campaign_id: number; name: string; segment: string; status: string; reach: number; opened: number; clicked: number; open_rate: number | null; click_rate: number | null; redeemers: number; redemption_rate: number | null; purchasers_after: number; retention_rate: number | null; definitions: Record<string, string> };
+export type SegmentRow = { segment: string; rule: string; customers: number; avg_recency_days: number | null; avg_frequency: number | null; avg_monetary: number | null; avg_redemptions: number | null };
+export const SEGMENTS = ["high_value", "loyal", "regular", "new", "at_risk", "inactive"];
+export const SEG_COLORS: Record<string, string> = { high_value: "#7c3aed", loyal: "#10b981", regular: "#64748b", new: "#06b6d4", at_risk: "#f59e0b", inactive: "#ef4444" };
+export const pct = (v: number | null | undefined) => (v === null || v === undefined ? "—" : `${(v * 100).toFixed(1)}%`);
+export const inr = (n: number) => `₹${Math.round(n).toLocaleString("en-IN")}`;
